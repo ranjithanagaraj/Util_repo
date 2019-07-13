@@ -13,32 +13,34 @@ def function(props) {
 		commonUtility.sonar();
 	}
 	stage('BuildProject') {
-		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
-		sh props.MAVEN_BUILD
-		
+		sh props.MAVEN_BUILD		
     }
 	
 	stage('UploadArtifactory') {
 		commonUtility.uploadWarArtifactory();
 	
 	}
-	stage('Tomcat Installation ') {
-	def Install = false;
+	
+    stage('Docker deploy')
+   {
+    sh props.DOCKER_CMD
+   sh props.DOCKER_RUN
+   }
+	
+stage('Prod Deploy') {
+	def Deploy = false;
 	try {
-		input message: 'Install?', ok: 'Install'
-		Install = true
+		input message: 'Deploy?', ok: 'Deploy'
+		Deploy = true
 		} catch (err) {
-	Install = false
-	
+	Deploy = false
+}
+if(Deploy)
+{
+    echo 'Deploy'
+	sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
+
 	}
-	
-       if (Install){   
-	 
-	  sh props.DOCKER_CMD
-        }
-    }	
-	stage('Deploying to Tomcat'){
-		sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
 	}
 	
 	stage('Email Notification')
