@@ -1,6 +1,6 @@
 def uploadWarArtifactory() {
 	script {
-		def server = Artifactory.newServer  url: "${props.ARTIFACTORY_ID}",username:'admin',password:'password'
+		def server = Artifactory.server 'artifactory'
                def uploadSpec = """{
    	
                 "files":[
@@ -15,10 +15,9 @@ def uploadWarArtifactory() {
 
 def sonar(){
 	def mvncmd=props.SONAR_SCAN
-	def sonarurl=props.SONAR_HOST
-	def url=mvncmd+sonarurl
-	sh "${url}"
+	sh "${mvncmd}"
 }
+
 def sendEmail() {
 		 emailext body: '${DEFAULT_CONTENT}', subject: '${DEFAULT_SUBJECT}', to:  props.RECEPIENT_MAIL_ID
 
