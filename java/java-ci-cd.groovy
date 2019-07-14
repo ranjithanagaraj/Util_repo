@@ -9,38 +9,40 @@ def function(props) {
 		
 	}
 	
-stage('BuildProject') {
+	stage('BuildProject') {
 		sh props.MAVEN_BUILD		
-    }
+   	 }
 	stage('SonarAnalysis'){
 		commonUtility.sonar();
 	}
-
+	stage("SonarQube Quality Gate")
+	{
+	commonUtility.qualityGate();
+	}
 	
 	stage('UploadArtifactory') {
 		commonUtility.uploadWarArtifactory();
-	
 	}
 	
-    stage('Docker deploy')
-   {
-    sh props.DOCKER_CMD
-   sh props.DOCKER_RUN
-   }
+        stage('Docker deploy')
+   	{
+  	  sh props.DOCKER_CMD
+  	 sh props.DOCKER_RUN
+  	 }
 	
-stage('Prod Deploy') {
+	stage('Prod Deploy') {
 	def Deploy = false;
 	try {
 		input message: 'Deploy?', ok: 'Deploy'
 		Deploy = true
 		} catch (err) {
 	Deploy = false
-}
-if(Deploy)
-{
-    echo 'Deploy to kubernetes'
-     sh props.kUBERNETES_APPLY
-     sh props.KUBERNETES_GET_ALL
+	}
+	if(Deploy)
+	{
+    	echo 'Deploy to kubernetes'
+     	sh props.kUBERNETES_APPLY
+     	sh props.KUBERNETES_GET_ALL
 	}
 	}
 	
@@ -48,5 +50,5 @@ if(Deploy)
 	{
 		commonUtility.sendEmail();
 	}
-}
+	}
 return this
