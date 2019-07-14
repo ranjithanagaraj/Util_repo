@@ -39,9 +39,8 @@ stage('Prod Deploy') {
 if(Deploy)
 {
     echo 'Deploy to kubernetes'
-     sh 'ssh admin@13.232.185.135 kubectl get all'
-     sh 'ssh admin@13.232.185.135 kubectl apply -f app.yaml -f redis.yaml --recursive'
-     sh 'ssh admin@13.232.185.135 kubectl get all'
+     sh props.kUBERNETES_APPLY
+     sh props.KUBERNETES_GET_ALL
 	}
 	}
 	
