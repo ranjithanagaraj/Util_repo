@@ -39,8 +39,6 @@ stage('Prod Deploy') {
 if(Deploy)
 {
     echo 'Deploy'
-	sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
-
 	}
 	}
 	
