@@ -9,27 +9,25 @@ def function(props) {
 		
 	}
 
-	stage('SonarAnalysis'){
-		commonUtility.sonar();
+	stage('SonarAnalysis')
+	{
+	commonUtility.sonar();
 	}
 	stage("SonarQube Quality Gate")
 	{
 	commonUtility.qualityGate();
-	}
-		
+	}	
 	stage('BuildProject') {
-		sh props.MAVEN_BUILD		
+	sh props.MAVEN_BUILD		
    	 }
 	stage('UploadArtifactory') {
-		commonUtility.uploadWarArtifactory();
+	commonUtility.uploadWarArtifactory();
 	}
-	
         stage('Docker Test deploy')
    	{
-  	  sh props.DOCKER_CMD
+  	 sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
   	 }
-	
 	stage('Prod Deploy') {
 	def Deploy = false;
 	try {
