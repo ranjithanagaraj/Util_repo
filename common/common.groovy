@@ -14,8 +14,10 @@ def uploadWarArtifactory() {
 }
 
 def sonar(){
+	withSonarQubeEnv('sonarqube') {
 	def mvncmd=props.SONAR_SCAN
 	sh "${mvncmd}"
+	}
 }
 
 def sendEmail() {
