@@ -39,7 +39,7 @@ def function(props) {
 	if(Deploy)
 	{
     	echo 'Deploy to kubernetes'
-     	sh props.kUBERNETES_APPLY
+     	sh props.KUBERNETES_APPLY
      	sh props.KUBERNETES_GET_ALL
 	}
 	}
