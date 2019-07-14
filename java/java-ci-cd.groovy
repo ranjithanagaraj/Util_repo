@@ -38,7 +38,8 @@ stage('Prod Deploy') {
 }
 if(Deploy)
 {
-    echo 'Deploy'
+    echo 'Deploy to kubernetes'
+     sh 'ssh admin@13.232.185.135 kubectl get all'
 	}
 	}
 	
