@@ -9,12 +9,13 @@ def function(props) {
 		
 	}
 	
+stage('BuildProject') {
+		sh props.MAVEN_BUILD		
+    }
 	stage('SonarAnalysis'){
 		commonUtility.sonar();
 	}
-	stage('BuildProject') {
-		sh props.MAVEN_BUILD		
-    }
+
 	
 	stage('UploadArtifactory') {
 		commonUtility.uploadWarArtifactory();
