@@ -30,6 +30,7 @@ def function(props) {
 	stage('Build & Push Docker image')
 	{
 	  sh props.DOCKER_BUILD
+	  sh props.DOCKER_TAG		
 	  sh props.DOCKER_PUSH
 	}	
 	stage('Dev deploy') {
@@ -45,7 +46,6 @@ def function(props) {
 	{
     	echo 'Docker Deploy'
          sh props.DOCKER_CMD
-	 sh props.DOCKER_TAG
   	 sh props.DOCKER_RUN
 	}
 	}
