@@ -32,10 +32,10 @@ def function(props) {
 	  sh props.DOCKER_BUILD
 	  sh props.DOCKER_PUSH
 	}	
-	stage('Test deploy') {
+	stage('Dev deploy') {
 	def Deploy = false;
 	try {
-		echo "Deploy To Test"
+		echo "Deploy To Dev"
 		input message: 'Deploy?', ok: 'Deploy'
 		Deploy = true
 		} catch (err) {
