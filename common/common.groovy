@@ -5,7 +5,7 @@ def uploadArtifact() {
    	
                 "files":[
                     {
-			"pattern":"/var/lib/jenkins/workspace/example/target/*.jar",
+			"pattern":"/var/lib/jenkins/workspace/pipeline3/target/*.jar",
 
 			"target":"art1/${artifactId}/${version}.${BUILD_NUMBER}/"
 			}]
@@ -22,7 +22,7 @@ def downloadArtifact() {
 			{
 			"pattern":"art1/${artifactId}/${version}.${BUILD_NUMBER}/*.jar",
 
-			"target":"/var/lib/jenkins/workspace/example/"
+			"target":"/var/lib/jenkins/workspace/pipeline3/"
 			}
 			]
 			}"""
