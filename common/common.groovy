@@ -22,7 +22,7 @@ def downloadArtifact() {
 			{
 			"pattern":"art1/${artifactId}/${version}.${BUILD_NUMBER}/*.jar",
 
-			"target":"/var/lib/jenkins/workspace/pipeline3/spring-boot-sample-session-redis/${artifactId}/${version}.${BUILD_NUMBER}/*.jar"
+			"target":"/var/lib/jenkins/workspace/pipeline3/"
 			}
 			]
 			}"""
