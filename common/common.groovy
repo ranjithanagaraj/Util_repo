@@ -1,4 +1,4 @@
-def uploadWarArtifactory() {
+def uploadArtifact() {
 	script {
 		def server = Artifactory.server 'artifactory'
                def uploadSpec = """{
@@ -13,6 +13,22 @@ def uploadWarArtifactory() {
 		server.upload(uploadSpec) 	
 		}
 	}
+def downloadArtifact() {
+	script {
+		def server = Artifactory.server 'artifactory'
+			def downloadSpec = """{
+				
+			"files":[
+			{
+			"pattern":"art1/${artifactId}/${version}.${BUILD_NUMBER}/*.jar",
+
+			"target":"/var/lib/jenkins/workspace/example/"
+			}
+			]
+			}"""
+			server.download(downloadSpec)
+
+    }
 
 def sonar(){
 	  withSonarQubeEnv('sonarqube') {
