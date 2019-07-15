@@ -28,6 +28,7 @@ def downloadArtifact() {
 			server.download(downloadSpec)
 
     }
+    sh 'mv /var/lib/jenkins/workspace/pipeline3/spring-boot-sample-session-redis/${artifactId}/${version}.${BUILD_NUMBER}/*jar /var/lib/jenkins/workspace/pipeline3/
 }
 
 def sonar(){
