@@ -20,7 +20,7 @@ def downloadArtifact() {
 				
 			"files":[
 			{
-			"pattern":"art1/${artifactId}/${version}.${BUILD_NUMBER}/*.jar",
+			"pattern":"art1/spring-boot-sample-session-redis/${artifactId}/${version}.${BUILD_NUMBER}/*.jar",
 
 			"target":"/var/lib/jenkins/workspace/pipeline3/"
 			}
