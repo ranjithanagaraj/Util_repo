@@ -29,6 +29,7 @@ def downloadArtifact() {
 			server.download(downloadSpec)
 
     }
+}
 
 def sonar(){
 	  withSonarQubeEnv('sonarqube') {
