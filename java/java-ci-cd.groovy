@@ -20,15 +20,25 @@ def function(props) {
 	{
 	sh props.MAVEN_BUILD		
    	}
+	stage('UploadArtifactory') {
+	commonUtility.uploadArtifact();
+	}
+	stage('downloadingArtifact')
+	{
+	commonUtility.downloadArtifact();	
+	}
 	stage('Build & Push Docker image')
 	{
 	  sh props.DOCKER_BUILD
 	  sh props.DOCKER_PUSH
 	}
-	stage('UploadArtifactory') {
-	commonUtility.uploadWarArtifactory();
+	stage('Dev Deploy')
+	{
+	sh 'terraform init'
+	sh 'terraform plan'
+	sh 'terraform apply'
 	}
-        stage('Docker Test deploy')
+	stage('Test deploy')
    	{	
   	 sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
