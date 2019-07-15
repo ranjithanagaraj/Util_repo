@@ -28,7 +28,7 @@ def downloadArtifact() {
 			server.download(downloadSpec)
 
     }
-sh "mv /${artifactId}/${version}.${BUILD_NUMBER}/*.jar /"
+sh "mv  spring-boot-sample-session-redis/${artifactId}/${version}.${BUILD_NUMBER}/*.jar ."
 }
 
 def sonar(){
