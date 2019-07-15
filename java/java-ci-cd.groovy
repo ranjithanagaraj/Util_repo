@@ -30,6 +30,7 @@ def function(props) {
 	stage('Prod Deploy') {
 	def Deploy = false;
 	try {
+		echo "Deploy To Prod"
 		input message: 'Deploy?', ok: 'Deploy'
 		Deploy = true
 		} catch (err) {
