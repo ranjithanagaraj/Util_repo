@@ -20,12 +20,16 @@ def function(props) {
 	{
 	sh props.MAVEN_BUILD		
    	}
+	stage('Build & Push Docker image')
+	{
+	  sh props.DOCKER_BUILD
+	  sh props.DOCKER_PUSH
+	}
 	stage('UploadArtifactory') {
 	commonUtility.uploadWarArtifactory();
 	}
         stage('Docker Test deploy')
-   	{
-         sh props.DOCKER_BUILD		
+   	{	
   	 sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
   	 }
