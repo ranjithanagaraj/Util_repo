@@ -8,7 +8,7 @@ def function(props) {
 		version=pom.version
 		
 	}
-	stage('SonarAnalysis')
+/*	stage('SonarAnalysis')
 	{
 	commonUtility.sonar();
 	}
@@ -19,7 +19,7 @@ def function(props) {
 	stage('BuildProject') 
 	{
 	sh props.MAVEN_BUILD		
-   	}
+   	}*/
 	stage('UploadArtifactory') {
 	commonUtility.uploadArtifact();
 	}
