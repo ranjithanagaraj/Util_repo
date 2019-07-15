@@ -8,14 +8,14 @@ def function(props) {
 		version=pom.version
 		
 	}
-/*	stage('SonarAnalysis')
+	stage('SonarAnalysis')
 	{
 	commonUtility.sonar();
 	}
 	stage("SonarQube Quality Gate")
 	{
 	commonUtility.qualityGate();
-	}*/
+	}
 	stage('BuildProject') 
 	{
 	sh props.MAVEN_BUILD		
@@ -31,14 +31,7 @@ def function(props) {
 	{
 	  sh props.DOCKER_BUILD
 	  sh props.DOCKER_PUSH
-	}
-/*	stage('Dev Deploy')
-	{
-	sh 'terraform init'
-	sh 'terraform plan'
-	sh 'terraform apply'
-	}
-*/	
+	}	
 	stage('Test deploy') {
 	def Deploy = false;
 	try {
@@ -52,10 +45,11 @@ def function(props) {
 	{
     	echo 'Docker Deploy'
          sh props.DOCKER_CMD
+	 sh props.DOCKER_TAG
   	 sh props.DOCKER_RUN
 	}
 	}
-	/*stage('Prod Deploy') {
+	stage('Prod Deploy') {
 	def Deploy = false;
 	try {
 		echo "Deploy To Prod"
@@ -70,7 +64,7 @@ def function(props) {
      	sh props.KUBERNETES_APPLY
      	sh props.KUBERNETES_GET_ALL
 	}
-	}*/
+	}
 	
 	stage('Email Notification')
 	{
