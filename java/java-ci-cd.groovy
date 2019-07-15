@@ -44,7 +44,7 @@ def function(props) {
      	sh props.KUBERNETES_APPLY
      	sh props.KUBERNETES_GET_ALL
 	}
-	}
+	
 	
 	stage('Email Notification')
 	{
