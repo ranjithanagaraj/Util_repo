@@ -25,10 +25,11 @@ def function(props) {
 	}
         stage('Docker Test deploy')
    	{
+         sh props.DOCKER_BUILD		
   	 sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
   	 }
-	stage('Prod Deploy') {
+	/*stage('Prod Deploy') {
 	def Deploy = false;
 	try {
 		echo "Deploy To Prod"
@@ -43,7 +44,7 @@ def function(props) {
      	sh props.KUBERNETES_APPLY
      	sh props.KUBERNETES_GET_ALL
 	}
-	}
+	}*/
 	
 	stage('Email Notification')
 	{
