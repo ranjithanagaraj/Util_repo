@@ -38,11 +38,23 @@ def function(props) {
 	sh 'terraform plan'
 	sh 'terraform apply'
 	}
-	stage('Test deploy')
-   	{	
-  	 sh props.DOCKER_CMD
+	
+	stage('Test deploy') {
+	def Deploy = false;
+	try {
+		echo "Deploy To Test"
+		input message: 'Deploy?', ok: 'Deploy'
+		Deploy = true
+		} catch (err) {
+	Deploy = false
+	}
+	if(Deploy)
+	{
+    	echo 'Docker Deploy'
+         sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
-  	 }
+	}
+	}
 	/*stage('Prod Deploy') {
 	def Deploy = false;
 	try {
