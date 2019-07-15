@@ -34,32 +34,12 @@ def function(props) {
 	  sh props.DOCKER_PUSH
 	}	
 	stage('Dev deploy') {
-	def Deploy = false;
-	try {
-		echo "Deploy To Dev"
-		input message: 'Deploy?', ok: 'Deploy'
-		Deploy = true
-		} catch (err) {
-	Deploy = false
-	}
-	if(Deploy)
-	{
-    	echo 'Docker Deploy'
+    	 echo 'Docker Deploy'
          sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
 	}
-	}
 	stage('Prod Deploy') {
-	def Deploy = false;
-	try {
-		echo "Deploy To Prod"
-		input message: 'Deploy?', ok: 'Deploy'
-		Deploy = true
-		} catch (err) {
-	Deploy = false
-	}
-	if(Deploy)
-	{
+        input "Deploy to production? "
     	echo 'Deploy to kubernetes'
      	sh props.KUBERNETES_APPLY
      	sh props.KUBERNETES_GET_ALL
