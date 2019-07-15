@@ -32,13 +32,13 @@ def function(props) {
 	  sh props.DOCKER_BUILD
 	  sh props.DOCKER_PUSH
 	}
-	stage('Dev Deploy')
+/*	stage('Dev Deploy')
 	{
 	sh 'terraform init'
 	sh 'terraform plan'
 	sh 'terraform apply'
 	}
-	
+*/	
 	stage('Test deploy') {
 	def Deploy = false;
 	try {
