@@ -39,8 +39,8 @@ def function(props) {
   	 sh props.DOCKER_RUN
 	}
 	stage('Test deploy') {
-    	 echo 'Docker-compose Deploy'
 	input "Deploy to Test? "
+	echo 'Docker-compose Deploy'
          sh props.ANSIBLE_CMD
   	 sh props.ANSIBLE_RUN
 	}	
