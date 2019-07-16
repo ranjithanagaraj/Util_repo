@@ -38,8 +38,14 @@ def function(props) {
          sh props.DOCKER_CMD
   	 sh props.DOCKER_RUN
 	}
+	stage('Test deploy') {
+    	 echo 'Docker-compose Deploy'
+	input "Deploy to Test? "
+         sh props.ANSIBLE_CMD
+  	 sh props.ANSIBLE_RUN
+	}	
 	stage('Prod Deploy') {
-        input "Deploy to production? "
+        input "Deploy to Production? "
     	echo 'Deploy to kubernetes'
      	sh props.KUBERNETES_APPLY
      	sh props.KUBERNETES_GET_ALL
